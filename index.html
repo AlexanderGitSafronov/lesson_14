@@ -8,8 +8,31 @@
 </head>
 <body>
     <script>
+       function reverse(number){
+           const numberToString = String(number);
+           const result = numberToString
+           ? reverse(numberToString.slice(1)) + numberToString[0]
+           : numberToString;
+           return Number(result);
+       }
 
-        
+       function isPalindrome(number) {
+           let stepCount = 0;
+
+            function foo(number){
+                const reverseNumber = reverse(number);
+                if (number === reverseNumber){
+                    return {
+                        value: number,
+                        step: stepCount
+                    };
+                }
+                stepCount++;
+                return foo(number + reverseNumber);
+            }
+            return foo(number);
+       }
+       console.log(isPalindrome(89));
     </script>
 </body>
 </html>
